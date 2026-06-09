@@ -34,7 +34,7 @@ classdef RDCP5 < PROBLEM %
             obj.encoding = ones(1,obj.D);
             rng(42);
             obj.lower_limit = 0;
-            obj.upper_limit = obj.maxFE/obj.N/obj.taut+ 1; % number of environments = number of changes 
+            obj.upper_limit = floor(obj.maxFE/(obj.N/obj.taut))+ 1; % number of environments = number of changes 
             obj.random_integers = randperm(obj.upper_limit - obj.lower_limit, obj.upper_limit) + obj.lower_limit+1;
         end
         %% Evaluate solutions
@@ -44,7 +44,7 @@ classdef RDCP5 < PROBLEM %
             PopCon     = Constraint(obj,PopObj);
             % Attach the current number of function evaluations to solutions
             Population = SOLUTION(PopDec,PopObj,PopCon,zeros(size(PopDec,1),1)+obj.FE);
-            obj.FE     = obj.FE + length(Population
+            obj.FE     = obj.FE + length(Population);
         end
         %% Calculate objective values
         function PopObj = CalObj(obj,PopDec)

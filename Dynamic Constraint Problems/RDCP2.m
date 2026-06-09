@@ -33,7 +33,7 @@ classdef RDCP2 < PROBLEM %有问题，复现不了！！！
             obj.encoding = ones(1,obj.D);
             rng(42);
             obj.lower_limit = 0;
-            obj.upper_limit = obj.maxFE/obj.N/obj.taut+ 1; 
+            obj.upper_limit = floor(obj.maxFE/(obj.N/obj.taut))+ 1; 
             obj.random_integers = randperm(obj.upper_limit - obj.lower_limit, obj.upper_limit) + obj.lower_limit+1;
         end
         %% Evaluate solutions
